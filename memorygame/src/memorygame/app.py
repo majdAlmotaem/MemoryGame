@@ -17,20 +17,19 @@ class MemoryGameApp(toga.App):
         super().__init__(
             formal_name='Memory Game',
             app_id='com.example.memorygame',
-            app_name='memorygame'
+            app_name='memorygame',
+            icon='resources/256.png'
         )
         self.game_started = False
 
     def startup(self):
         self.game = MemoryGame()
         
-        # Main window with dark background
         self.main_window = toga.MainWindow(
             title='Memory Game', 
-            size=(300, 500)  # Mobile-friendly size
+            size=(300, 500)
         )
         
-        # Main box
         main_box = toga.Box(style=Pack(
             direction=COLUMN, 
             padding=20,
@@ -38,18 +37,6 @@ class MemoryGameApp(toga.App):
             alignment='center'
         ))
         
-        # Attempts label with dark theme
-        self.attempts_label = toga.Label(
-            'Attempts: 0', 
-            style=Pack(
-                padding=10, 
-                color='black',
-                font_size=16,
-                alignment='center'
-            )
-        )
-        
-        # Game board
         self.board_box = toga.Box(style=Pack(
             direction=COLUMN, 
             padding=10,
@@ -57,7 +44,6 @@ class MemoryGameApp(toga.App):
             alignment='center'
         ))
         
-        # Start Game button with dark theme
         start_button = toga.Button(
             'Start Game', 
             on_press=self.start_game,
@@ -70,7 +56,6 @@ class MemoryGameApp(toga.App):
             )
         )
         
-        # Reset button with dark theme
         reset_button = toga.Button(
             'Reset Game', 
             on_press=self.reset_game,
@@ -83,7 +68,6 @@ class MemoryGameApp(toga.App):
             )
         )
         
-        main_box.add(self.attempts_label)
         main_box.add(self.board_box)
         main_box.add(start_button)
         main_box.add(reset_button)
@@ -135,9 +119,8 @@ class MemoryGameApp(toga.App):
             
             self.board_box.add(row_box)
         
-        self.attempts_label.text = f'Attempts: {self.game.attempts}'
-        
         if self.game.is_game_over():
+            self.beep()
             self.main_window.info_dialog(
                 'Congratulations!', 
                 'You won the game!'

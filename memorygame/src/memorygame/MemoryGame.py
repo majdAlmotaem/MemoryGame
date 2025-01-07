@@ -6,10 +6,8 @@ class MemoryGame:
         self.board = self._create_board()
         self.flipped_cards = []
         self.matched_pairs = 0
-        self.attempts = 0
 
     def _create_board(self):
-        # Create pairs of cards
         symbols = list('🍎🍐🍊🍋🍌🍉🍇🍓') * 2
         random.shuffle(symbols)
         return [{'symbol': symbol, 'matched': False, 'flipped': False} for symbol in symbols[:self.size**2]]
@@ -21,7 +19,6 @@ class MemoryGame:
             self.flipped_cards.append(index)
 
             if len(self.flipped_cards) == 2:
-                self.attempts += 1
                 return self._check_match()
         return False
 
@@ -36,7 +33,6 @@ class MemoryGame:
             self.flipped_cards.clear()
             return True
         else:
-            # Unflip cards after a short delay
             card1['flipped'] = False
             card2['flipped'] = False
             self.flipped_cards.clear()
