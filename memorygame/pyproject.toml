@@ -167,7 +167,7 @@ requires = [
 ]
 theme_color = "#1E1E1E"
 status_bar_color = "#1E1E1E"
-
+icon = "icons/memorygame"
 base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
 
 

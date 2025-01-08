@@ -1,16 +1,24 @@
 import random
 
 class MemoryGame:
-    def __init__(self, size=4):
-        self.size = size
+    def __init__(self, level=1):
+        self.level = level
+        self.size = 4  # Feste Größe für alle Level
         self.board = self._create_board()
         self.flipped_cards = []
         self.matched_pairs = 0
+        self.hearts = 3
 
     def _create_board(self):
-        symbols = list('🍎🍐🍊🍋🍌🍉🍇🍓') * 2
+        total_cards = self.size * self.size
+        pairs_needed = total_cards // 2
+        
+        # Erweiterte Symbolliste
+        symbols = list('🍎🍐🍊🍋🍌🍉🍇🍓🍒🍑🍍🥝🥥🥕🌽🥨🥐🍖🍗🍔🍪🍫🍬🍭🍮🍯🍺🍻🍷🍸')[:pairs_needed]
+        symbols = symbols * 2  # Verdopple die Symbole für Paare
+        
         random.shuffle(symbols)
-        return [{'symbol': symbol, 'matched': False, 'flipped': False} for symbol in symbols[:self.size**2]]
+        return [{'symbol': symbol, 'matched': False, 'flipped': False} for symbol in symbols]
 
     def flip_card(self, index):
         card = self.board[index]
@@ -36,7 +44,26 @@ class MemoryGame:
             card1['flipped'] = False
             card2['flipped'] = False
             self.flipped_cards.clear()
+            self.hearts -= 1  # Verliere ein Herz bei Fehler
             return False
+
+    def has_lost(self):
+        return self.hearts <= 0
 
     def is_game_over(self):
         return self.matched_pairs == self.size**2 // 2
+    
+    def _calculate_size_for_level(self):
+        return 4
+
+    def level_up(self):
+        if self.level < 10:  # Maximales Level ist 10
+            self.level += 1
+            self.size = self._calculate_size_for_level()
+            self.board = self._create_board()
+            self.flipped_cards = []
+            self.matched_pairs = 0
+            self.hearts = 3  # Setze Herzen beim Level-Up zurück
+            return True
+        return False
+
