@@ -30,11 +30,21 @@ class MemoryGameApp(toga.App):
             size=(300, 500)
         )
         
+        # Äußerster Container ohne Padding
+        outer_container = toga.Box(style=Pack(
+            direction=COLUMN,
+            background_color=self.DARK_BACKGROUND,
+            flex=1,
+            padding=0
+        ))
+
+        # Innerer Container für den Content
         main_box = toga.Box(style=Pack(
             direction=COLUMN, 
             padding=20,
             background_color=self.DARK_BACKGROUND,
-            alignment='center'
+            alignment='center',
+            flex=1
         ))
         
         self.board_box = toga.Box(style=Pack(
@@ -67,12 +77,17 @@ class MemoryGameApp(toga.App):
                 alignment='center'
             )
         )
-        
+
+        # Füge alle Elemente zum inneren Container hinzu
         main_box.add(self.board_box)
         main_box.add(start_button)
         main_box.add(reset_button)
+
+        # Füge den inneren Container zum äußeren hinzu
+        outer_container.add(main_box)
         
-        self.main_window.content = main_box
+        # Setze den äußeren Container als Hauptinhalt
+        self.main_window.content = outer_container
         self.main_window.show()
 
     def start_game(self, widget):
@@ -80,7 +95,7 @@ class MemoryGameApp(toga.App):
         self.main_window.app.add_background_task(self.hide_cards_after_delay)
 
     async def hide_cards_after_delay(self, widget):
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
         self.game_started = True
         self.create_board_grid(preview=False)
 
@@ -105,12 +120,12 @@ class MemoryGameApp(toga.App):
                     button_text,
                     on_press=lambda widget, idx=index: self.on_card_press(idx),
                     style=Pack(
-                        width=50, 
-                        height=50, 
+                        width=70, 
+                        height=70, 
                         padding=5,
                         background_color=self.DARK_BUTTON_BACKGROUND,
                         color=self.ACCENT_COLOR,
-                        font_size=20,
+                        font_size=32,
                         font_weight='bold',
                         alignment='center'
                     )

@@ -59,3 +59,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+
+# Icons and Images
+*.png
+!src/memorygame/resources/**/*.png

@@ -153,6 +153,7 @@ requires = [
     "toga-winforms~=0.4.7",
 ]
 
+
 # Mobile deployments
 [tool.briefcase.app.memorygame.iOS]
 requires = [
@@ -162,10 +163,14 @@ requires = [
 
 [tool.briefcase.app.memorygame.android]
 requires = [
-    "toga-android~=0.4.7",
+    "toga-android~=0.4.7"
 ]
+theme_color = "#1E1E1E"
+status_bar_color = "#1E1E1E"
 
 base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
+
+
 
 build_gradle_dependencies = [
     "com.google.android.material:material:1.12.0",
