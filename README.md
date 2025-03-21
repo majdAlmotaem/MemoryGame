@@ -1,5 +1,11 @@
 # Memory Game 🎮
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/62c24c08-c13c-41c9-99ea-4c5b20187b04" alt="memorygame-round-192">
+</p>
+
+
+
 A fun and challenging memory card matching game built with Python and Toga. Test your memory skills across multiple levels while enjoying a sleek dark-themed interface.
 
 ## Features ✨
@@ -23,17 +29,13 @@ A fun and challenging memory card matching game built with Python and Toga. Test
 
 ## Screenshots 📸
 
-### Game Start
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b989def0-1d36-4b14-8844-f118d186fef0" alt="Screenshot_20250108-140921" width="25%">   
 
-[Screenshot of initial game screen]
+  <img src="https://github.com/user-attachments/assets/d8826c65-8ca5-4e4b-9b38-c646652281fb" alt="Screenshot_20250108-140913" width="25%" >
+</p>
 
-### During Gameplay
 
-[Screenshot of active gameplay]
-
-### Level Complete
-
-[Screenshot of level completion]
 
 ## Controls 🎮
 
